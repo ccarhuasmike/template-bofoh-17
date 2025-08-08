@@ -1,0 +1,25 @@
+<header class="flex items-center justify-between px-4 py-2 bg-brand shadow-md text-white">
+  <!-- Botón visible SIEMPRE -->
+  <button
+    class="text-2xl focus:outline-none hover:text-gray-200 transition"
+    (click)="toggleMenu.emit()"
+    aria-label="Toggle menu"
+  >
+    &#9776;
+  </button>
+
+  <h1 class="text-xl font-bold">Infinance XP</h1>
+
+  <div class="flex items-center gap-4">
+    <i class="pi pi-bell text-xl hover:text-gray-200 transition"></i>
+
+    <!-- Botón con el nombre del usuario -->
+    <p-splitButton
+      [label]="userName"
+      icon="pi pi-user"
+      [model]="userMenuItems"
+      class="bg-white text-brand font-semibold border border-white rounded-md shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:border-white px-3 py-1.5"
+      styleClass="custom-splitbutton"
+    ></p-splitButton>
+  </div>
+</header>

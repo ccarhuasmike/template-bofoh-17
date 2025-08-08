@@ -1,0 +1,56 @@
+<nav class="h-full flex flex-col bg-slate-900 border-r border-slate-800 shadow-md">
+  <!-- nivel 0 -->
+  <ul>
+    <ng-container
+      *ngTemplateOutlet="renderItems; context:{ $implicit: items, level: 0 }"
+    ></ng-container>
+  </ul>
+</nav>
+
+<ng-template #renderItems let-list let-level="level">
+  <li
+    *ngFor="let item of list"
+    [ngClass]="{
+      'mb-2': level > 0,
+      'mb-6': level === 0
+    }"
+  >
+    <div
+      (click)="onItemClick(item)"
+      class="flex items-center gap-2 px-3 py-2 rounded cursor-pointer relative transition-all duration-200 ease-in-out text-gray-300"
+      [ngClass]="{
+        'pl-4 border-l-4 border-blue-500 bg-slate-800 text-white shadow-inner':
+          item.route && selectedRoute === item.route,
+        'pl-4': level === 1,
+        'pl-8': level === 2,
+        'hover:bg-slate-800 hover:text-white': true
+      }"
+    >
+      <div
+        *ngIf="item.route && selectedRoute === item.route"
+        class="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-blue-400 rounded-full"
+      ></div>
+
+      <i
+        class="{{ item.icon }}"
+        [ngClass]="{ 'text-blue-400': selectedRoute === item.route }"
+      ></i>
+
+      <span *ngIf="!collapsed" class="text-sm font-medium">
+        {{ item.label }}
+      </span>
+
+      <i
+        *ngIf="item.children"
+        class="pi pi-chevron-down ml-auto text-xs transition-transform duration-200"
+        [ngClass]="{ 'rotate-180': item.expanded }"
+      ></i>
+    </div>
+
+    <ul *ngIf="item.expanded && item.children">
+      <ng-container
+        *ngTemplateOutlet="renderItems; context: { $implicit: item.children, level: level + 1 }"
+      ></ng-container>
+    </ul>
+  </li>
+</ng-template>
