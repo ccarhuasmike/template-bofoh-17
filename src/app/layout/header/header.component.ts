@@ -5,10 +5,9 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [CommonModule, SplitButtonModule],
-  templateUrl: './header.component.html'
+    selector: 'app-header',
+    imports: [CommonModule, SplitButtonModule],
+    templateUrl: './header.component.html'
 })
 export class HeaderComponent {
   @Output() toggleMenu = new EventEmitter<void>();
