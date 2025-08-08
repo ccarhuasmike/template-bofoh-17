@@ -5,10 +5,9 @@ import { Router, RouterModule } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 
 @Component({
-  selector: 'app-sidebar',
-  standalone: true, 
-  imports: [CommonModule, PanelMenuModule, RouterModule],
-  templateUrl: './sidebar.component.html'
+    selector: 'app-sidebar',
+    imports: [CommonModule, PanelMenuModule, RouterModule],
+    templateUrl: './sidebar.component.html'
 })
 export class SidebarComponent {
  @Input() collapsed = false;     
